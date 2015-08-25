@@ -10,60 +10,60 @@ fase(f7).
 fase(f8).
 
 % primeira fase
-materia(eel5105, f1).
-materia(ine5401, f1).
-materia(ine5402, f1).
-materia(ine5403, f1).
-materia(mtm5161, f1).
+materia(eel5105, "Circuitos e Técnicas Digitais", f1).
+materia(ine5401, "Introdução à Computação", f1).
+materia(ine5402, "Programação Orientada a Objetos I", f1).
+materia(ine5403, "Fundamentos de Matemática Discreta para Computação", f1).
+materia(mtm5161, "Cálculo A", f1).
 
 % segunda fase
-materia(ine5404, f2).
-materia(ine5405, f2).
-materia(ine5406, f2).
-materia(ine5407, f2).
-materia(mtm5512, f2).
-materia(mtm7174, f2).
+materia(ine5404, "Programação Orientada a Objetos II", f2).
+materia(ine5405, "Probabilidade e Estatística", f2).
+materia(ine5406, "Sistemas Digitais", f2).
+materia(ine5407, "Ciência, Tecnologia e Sociedade", f2).
+materia(mtm5512, "Geometria Analítica", f2).
+materia(mtm7174, "Cálculo B para Computação", f2).
 
 % terceira fase
-materia(ine5408, f3).
-materia(ine5409, f3).
-materia(ine5410, f3).
-materia(ine5411, f3).
-materia(mtm5245, f3).
+materia(ine5408, "Estruturas de Dados", f3).
+materia(ine5409, "Cálculo Numérico para Computação", f3).
+materia(ine5410, "Programação Concorrente", f3).
+materia(ine5411, "Organização de Computadores I", f3).
+materia(mtm5245, "Álgebra Linear", f3).
 
 % quarta fase
-materia(ine5412, f4).
-materia(ine5413, f4).
-materia(ine5414, f4).
-materia(ine5415, f4).
-materia(ine5416, f4).
-materia(ine5417, f4).
+materia(ine5412, "Sistemas Operacionais I", f4).
+materia(ine5413, "Grafos", f4).
+materia(ine5414, "Redes de Computadores I", f4).
+materia(ine5415, "Teoria da Computação", f4).
+materia(ine5416, "Paradigmas de Programação", f4).
+materia(ine5417, "Engenharia de Software I", f4).
 
 % quinta fase
-materia(ine5418, f5).
-materia(ine5419, f5).
-materia(ine5420, f5).
-materia(ine5421, f5).
-materia(ine5422, f5).
-materia(ine5423, f5).
+materia(ine5418, "Computação Distribuída", f5).
+materia(ine5419, "Engenharia de Software II", f5).
+materia(ine5420, "Computação Gráfica", f5).
+materia(ine5421, "Linguagens Formais e Compiladores", f5).
+materia(ine5422, "Redes de Computadores II", f5).
+materia(ine5423, "Banco de Dados I", f5).
 
 % sexta fase
-materia(ine5424, f6).
-materia(ine5425, f6).
-materia(ine5426, f6).
-materia(ine5427, f6).
-materia(ine5430, f6).
-materia(ine5453, f6).
+materia(ine5424, "Sistemas Operacionais II", f6).
+materia(ine5425, "Modelagem e Simulação", f6).
+materia(ine5426, "Construção de Compiladores", f6).
+materia(ine5427, "Planejamento e Gestão de Projetos", f6).
+materia(ine5430, "Inteligência Artificial", f6).
+materia(ine5453, "Introdução ao Trabalho de Conclusão de Curso", f6).
 
 % sétima fase
-materia(ine5428, f7).
-materia(ine5429, f7).
-materia(ine5431, f7).
-materia(ine5432, f7).
-materia(ine5433, f7).
+materia(ine5428, "Informática e Sociedade", f7).
+materia(ine5429, "Segurança em Computação", f7).
+materia(ine5431, "Sistemas Multimídia", f7).
+materia(ine5432, "Banco de Dados II", f7).
+materia(ine5433, "Trabalho de Conclusão de Curso I", f7).
 
 % oitava fase
-materia(ine5434, f8).
+materia(ine5434, "Trabalho de Conclusão de Curso II", f8).
 
 depende(ine5404, ine5402).
 depende(ine5405, mtm5161).
@@ -113,5 +113,3 @@ depende(ine5432, ine5423).
 depende(ine5433, ine5427).
 
 depende(ine5434, ine5433).
-
-fase(X, Y) :- materia(X, Y).
