@@ -1,4 +1,13 @@
+%% %%
+%% INE5416 - Paradigmas de Programação (2015/2)
+%% Grupo: Gustavo Zambonin (13104307)
+%%        Lucas Kramer de Sousa (13100757)
+%%        Marcello da Silva Klingelfus Junior (13100764)
+%% %%
+
 main.
+
+%% T1A
 
 fase(f1).
 fase(f2).
@@ -121,22 +130,44 @@ depende(ine5433, ine5427).
 %% dependências da oitava fase
 depende(ine5434, ine5433).
 
-%% regras
-listar_fase(F, C, N) :- 
-            materia(C, N, F).
+%% T1B
 
+%% questão 1
+listar_nome(C, N) :- 
+    materia(C, N, F).
+
+%% questão 2
+listar_fase(C, F) :-
+    materia(C, N, F).
+
+%% questão 3
+listar_por_fase(F, C, N) :- 
+    materia(C, N, F).
+
+%% questão 4
 listar_deps(C, N, F) :- 
-            depende(C, D), 
-            materia(D, N, F).
+    depende(C, D), 
+    materia(D, N, F).
 
 listar_deps(C, N) :- 
-            depende(C, D), 
-            materia(D, N, F).
+    depende(C, D), 
+    materia(D, N, F).
+
+%% questão 5
+listar_dep2(C, N) :-
+    depende(C, D), 
+    depende(D, N).
 
 listar_sucs(C, N, F) :- 
-            depende(S, C),
-            materia(S, N, F).
+    depende(S, C),
+    materia(S, N, F).
 
 listar_sucs(C, N) :- 
-            depende(S, C), 
-            materia(S, N, F).
+    depende(S, C), 
+    materia(S, N, F).
+
+%% dep_recurs(C, N) :- 
+%%     listar_deps(C, N).
+%% dep_recurs(C, N) :- 
+%%     listar_deps(C, X), 
+%%     dep_recurs(X, N).
