@@ -122,8 +122,21 @@ depende(ine5433, ine5427).
 depende(ine5434, ine5433).
 
 %% regras
-listar_fase(F, C, N) :- materia(C, N, F).
-listar_deps(C, N, F) :- depende(C, D), materia(D, N, F).
-listar_deps(C, N) :- depende(C, D), materia(D, N, F).
-listar_sucs(C, N, F) :- depende(S, C), materia(S, N, F).
-listar_sucs(C, N) :- depende(S, C), materia(S, N, F).
+listar_fase(F, C, N) :- 
+            materia(C, N, F).
+
+listar_deps(C, N, F) :- 
+            depende(C, D), 
+            materia(D, N, F).
+
+listar_deps(C, N) :- 
+            depende(C, D), 
+            materia(D, N, F).
+
+listar_sucs(C, N, F) :- 
+            depende(S, C),
+            materia(S, N, F).
+
+listar_sucs(C, N) :- 
+            depende(S, C), 
+            materia(S, N, F).
