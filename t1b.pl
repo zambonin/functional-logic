@@ -93,21 +93,26 @@ depende(ine5412, ine5410).
 depende(ine5412, ine5411).
 depende(ine5413, ine5403).
 depende(ine5413, ine5408).
+%% depende(ine5412, [ine5410, ine5411]).
+%% depende(ine5413, [ine5403, ine5408]).
 depende(ine5414, ine5404).
 depende(ine5415, ine5403).
 depende(ine5415, ine5408).
+%% depende(ine5415, [ine5403, ine5408]).
 depende(ine5416, ine5408).
 depende(ine5417, ine5408).
 
 %% dependências da quinta fase
 depende(ine5418, ine5412).
 depende(ine5418, ine5414).
+%% depende(ine5418, [ine5412, ine5414])
 depende(ine5419, ine5417).
 depende(ine5420, ine5408).
 depende(ine5420, mtm5245).
 depende(ine5420, mtm7174).
+%% depende(ine5420, [ine5408, mtm5245, mtm7174]).
 depende(ine5421, ine5415).
-depende(mtm5245, ine5414).
+depende(ine5422, ine5414).
 depende(ine5423, ine5408).
 
 %% dependências da sexta fase
@@ -117,12 +122,14 @@ depende(ine5426, ine5421).
 depende(ine5427, ine5417).
 depende(ine5430, ine5405).
 depende(ine5430, ine5416).
+%% depende(ine5430, [ine5405, ine5416]).
 depende(ine5453, ine5417).
 
 %% dependências da sétima fase
 depende(ine5428, ine5407).
 depende(ine5429, ine5403).
 depende(ine5429, ine5414).
+%% depende(ine5429, [ine5403, ine5414]).
 depende(ine5431, ine5414).
 depende(ine5432, ine5423).
 depende(ine5433, ine5427).
@@ -166,8 +173,12 @@ listar_sucs(C, N) :-
     depende(S, C), 
     materia(S, N, F).
 
-%% dep_recurs(C, N) :- 
-%%     listar_deps(C, N).
-%% dep_recurs(C, N) :- 
-%%     listar_deps(C, X), 
-%%     dep_recurs(X, N).
+%% questão 10: listar matérias com mais de um pré-requisito
+
+%% desafio
+dep_recurs(C, N) :- 
+    depende(C, N).
+dep_recurs(C, N) :- 
+    depende(C, X), 
+    dep_recurs(X, N).
+
