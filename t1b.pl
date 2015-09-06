@@ -93,24 +93,19 @@ depende(ine5412, ine5410).
 depende(ine5412, ine5411).
 depende(ine5413, ine5403).
 depende(ine5413, ine5408).
-%% depende(ine5412, [ine5410, ine5411]).
-%% depende(ine5413, [ine5403, ine5408]).
 depende(ine5414, ine5404).
 depende(ine5415, ine5403).
 depende(ine5415, ine5408).
-%% depende(ine5415, [ine5403, ine5408]).
 depende(ine5416, ine5408).
 depende(ine5417, ine5408).
 
 %% dependências da quinta fase
 depende(ine5418, ine5412).
 depende(ine5418, ine5414).
-%% depende(ine5418, [ine5412, ine5414])
 depende(ine5419, ine5417).
 depende(ine5420, ine5408).
 depende(ine5420, mtm5245).
 depende(ine5420, mtm7174).
-%% depende(ine5420, [ine5408, mtm5245, mtm7174]).
 depende(ine5421, ine5415).
 depende(ine5422, ine5414).
 depende(ine5423, ine5408).
@@ -122,14 +117,12 @@ depende(ine5426, ine5421).
 depende(ine5427, ine5417).
 depende(ine5430, ine5405).
 depende(ine5430, ine5416).
-%% depende(ine5430, [ine5405, ine5416]).
 depende(ine5453, ine5417).
 
 %% dependências da sétima fase
 depende(ine5428, ine5407).
 depende(ine5429, ine5403).
 depende(ine5429, ine5414).
-%% depende(ine5429, [ine5403, ine5414]).
 depende(ine5431, ine5414).
 depende(ine5432, ine5423).
 depende(ine5433, ine5427).
@@ -140,40 +133,49 @@ depende(ine5434, ine5433).
 %% T1B
 
 %% questão 1
-listar_nome(C, N) :- 
+fase_disciplina(C, F) :-
     materia(C, N, F).
 
 %% questão 2
-listar_fase(C, F) :-
+nome_completo(C, N) :-
     materia(C, N, F).
 
 %% questão 3
-listar_por_fase(F, C, N) :- 
+listar_por_fase(F, C) :-
     materia(C, N, F).
 
 %% questão 4
-listar_deps(C, N, F) :- 
-    depende(C, D), 
-    materia(D, N, F).
-
-listar_deps(C, N) :- 
-    depende(C, D), 
-    materia(D, N, F).
+dep_comum(X, Y, Z) :-
+    depende(X, Z),
+    depende(Y, Z),
+    not(X=Y).
 
 %% questão 5
-listar_dep2(C, N) :-
-    depende(C, D), 
-    depende(D, N).
+listar_dep2(X, Z) :-
+    depende(X, Y),
+    depende(Y, Z).
 
-listar_sucs(C, N, F) :- 
-    depende(S, C),
-    materia(S, N, F).
+%% questão 6
+listar_eh_pre_req_por_fase(F, C) :-
+    materia(C, N, F),
+    depende(X, C).
 
-listar_sucs(C, N) :- 
-    depende(S, C), 
-    materia(S, N, F).
+%% questão 7
+listar_tem_pre_req_por_fase(F, C) :-
+    materia(C, N, F),
+    depende(C, X).
 
-%% questão 10: listar matérias com mais de um pré-requisito
+%% questão 8
+tudo_igual(M, N, F) :- 
+    materia(M, A, F),
+    depende(M, W),
+    depende(N, W),
+    not(M=N).
+
+%% questão 9
+pre_req_anteriores(X, Y, Z) :- 
+    depende(X, Y),
+    depende(Y, Z).
 
 %% desafio
 dep_recurs(C, N) :- 
@@ -182,3 +184,5 @@ dep_recurs(C, N) :-
     depende(C, X), 
     dep_recurs(X, N).
 
+%% questão 10 
+%% (livre, sugestões?)
