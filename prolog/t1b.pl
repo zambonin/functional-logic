@@ -185,4 +185,9 @@ dep_recurs(C, N) :-
     dep_recurs(X, N).
 
 %% questão 10 
-%% (livre, sugestões?)
+%% * lista as matérias que dependem da entrada
+tranca_o_que(C, N) :- 
+    depende(N, C).
+tranca_o_que(C, N) :- 
+    depende(X, C), 
+    tranca_o_que(X, N).
