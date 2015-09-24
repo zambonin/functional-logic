@@ -82,7 +82,7 @@ depende(mtm7174, mtm5161).
 
 %% dependências da terceira fase
 depende(ine5408, ine5404).
-depende(ine5409, mtm5512). 
+depende(ine5409, mtm5512).
 depende(ine5409, mtm7174).
 depende(ine5410, ine5404).
 depende(ine5411, ine5406).
@@ -166,28 +166,72 @@ listar_tem_pre_req_por_fase(F, C) :-
     depende(C, X).
 
 %% questão 8
-tudo_igual(M, N, F) :- 
+tudo_igual(M, N, F) :-
     materia(M, A, F),
     depende(M, W),
     depende(N, W),
     not(M=N).
 
 %% questão 9
-pre_req_anteriores(X, Y, Z) :- 
+pre_req_anteriores(X, Y, Z) :-
     depende(X, Y),
     depende(Y, Z).
 
 %% desafio
-dep_recurs(C, N) :- 
+dep_recurs(C, N) :-
     depende(C, N).
-dep_recurs(C, N) :- 
-    depende(C, X), 
+dep_recurs(C, N) :-
+    depende(C, X),
     dep_recurs(X, N).
 
-%% questão 10 
+%% questão 10
 %% * lista as matérias que dependem da entrada
-tranca_o_que(C, N) :- 
+tranca_o_que(C, N) :-
     depende(N, C).
-tranca_o_que(C, N) :- 
-    depende(X, C), 
+tranca_o_que(C, N) :-
+    depende(X, C),
     tranca_o_que(X, N).
+
+%% T1C
+
+%% questão 1
+list_fase(List, F) :-
+    findall(N, materia(_, N, F), List).
+numero_disc_por_fase(F, L) :-
+    list_fase(List, F),
+    length(List, L).
+
+%% questão 2
+list_total(List) :-
+    findall(X, materia(X, _, _), List).
+numero_total_disc(L) :-
+    list_total(List),
+    length(List, L).
+
+%% questão 3
+list_tem_pre(List) :-
+    setof(X, Dist^(depende(X, Dist)), List).
+numero_disc_com_pre(L) :-
+    list_tem_pre(List),
+    length(List, L).
+
+%% questão 4
+list_sao_pre(List) :-
+    setof(X, Dist^(depende(Dist, X)), List).
+numero_disc_sao_pre(L) :-
+    list_sao_pre(List),
+    length(List, L).
+
+%% questão 5
+list_numero_pre_determinada(List, N) :-
+    findall(X, dep_recurs(N, X), List).
+numero_pre_req_disc(N, L) :-
+    list_numero_pre_determinada(List, N),
+    length(List, L).
+
+%% questão 7
+list_numero_eh_determinada(List, N) :-
+    findall(X, dep_recurs(X, N), List).
+numero_disc_como_pre(N, L) :-
+    list_numero_eh_determinada(List, N),
+    length(List, L).
