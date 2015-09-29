@@ -85,9 +85,9 @@ Utilizando o interpretador Haskell online \href{http://ghc.io}{ghc.io}, as resol
     \item (a) $f(x) = x^2 + 4$ \\
     $\mathbf{\lambda x.x^2 + 4\ (x)}$ \\ \\
     (b) $f(x) = \sum_{x=1}^{x=10} x$ \\
-    $\mathbf{\lambda x.x[1..10]\  (x)}$ \\ \\
+    $\mathbf{\lambda x.x{1..10}\  (x)}$ \\ \\
     (c) $f(a, b) = a + b$ \\
-    $\mathbf{\lambda ab.a+b\ (a)(b)}$ \\ \\
+    $\mathbf{\lambda a.\lambda b.(a+b)}$ \\ \\
     (d) $f(x) = x.x^{-1}$ \\
     $\mathbf{\lambda x.1\ (x)}$
 
