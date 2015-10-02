@@ -39,6 +39,7 @@ Utilizando o interpretador Haskell online \href{http://ghc.io}{ghc.io}, as resol
 [1,1,1,2,2,3,3,4]\end{verbatim}
 \end{itemize}
 
+\newpage
 \subsubsection*{Lista de exercícios 1}
 \begin{enumerate}\bfseries
     \item $y = \frac{x+1}{x^2}$ \\
@@ -69,21 +70,26 @@ Utilizando o interpretador Haskell online \href{http://ghc.io}{ghc.io}, as resol
     $|f(a) - f(-a)| =$ ?
         \begin{gather*}
             \frac{|a|}{a} - \frac{|-a|}{-a} =
-            \frac{a}{a} + \frac{a}{a} = 1 + 1 = \mathbf{2}
+            \frac{|a|}{a} + \frac{|a|}{a} = 2\frac{|a|}{a} = \mathbf{\pm2}
         \end{gather*}
     \item $f(x) = x^4$, $g(x) = \sqrt{1+x^3}$, $h(x) = \frac{x^2 + 1}{2x + 1}$; $f,g,h : \mathbb{R} \rightarrow [0, \infty)$
     \begin{enumerate}
-        \item $f \circ g$ \\ $i(x) = (\sqrt{1+x^3})^4 = (x^3 + 1)^2$; $i : \mathbb{R} \rightarrow \mathbb{R}$
-        \item $f \circ g \circ h$ \\ $j(x) = \left(\sqrt{1 + (\frac{x^2 + 1}{2x + 1})^3}\right)^4 = \left(1 + (\frac{x^2 + 1}{2x + 1})^3\right)^2$; $j : \mathbb{R} \rightarrow \mathbb{R}$
+        \item $f \circ g$ \\ $i(x) = (\sqrt{1+x^3})^4 = (x^3 + 1)^2$; $i : \mathbb{R} \rightarrow [0, \infty)$
+        \item $f \circ g \circ h$ \\ $j(x) = \left(\sqrt{1 + (\frac{x^2 + 1}{2x + 1})^3}\right)^4 = \left(1 + (\frac{x^2 + 1}{2x + 1})^3\right)^2$; $j : \mathbb{R} \rightarrow [0, \infty)$
     \end{enumerate}
 \end{enumerate}
 
+\newpage
 \subsubsection*{Lista de exercícios 2}
 \begin{enumerate}\bfseries
-    \item (a) $f(x) = x^2 + 4 \Rightarrow \mathbf{\lambda x.x^2 + 4\ (x)}$ \\
-    (b) $f(x) = \sum_{x=1}^{x=10} x \Rightarrow \mathbf{\lambda x.x[1..10]\  (x)}$ \\
-    (c) $f(a, b) = a + b \Rightarrow \mathbf{\lambda ab.a+b\ (a)(b)}$ \\
-    (d) $f(x) = x.x^{-1} \Rightarrow \mathbf{\lambda x.1\ (x)}$
+    \item (a) $f(x) = x^2 + 4$ \\
+    $\mathbf{\lambda x.x^2 + 4\ (x)}$ \\ \\
+    (b) $f(x) = \sum_{x=1}^{x=10} x$ \\
+    $\mathbf{\lambda x.x{1..10}\  (x)}$ \\ \\
+    (c) $f(a, b) = a + b$ \\
+    $\mathbf{\lambda a.\lambda b.(a+b)}$ \\ \\
+    (d) $f(x) = x.x^{-1}$ \\
+    $\mathbf{\lambda x.1\ (x)}$
 
     \item (a) $\lambda x.(\lambda y.y^2 - (\lambda z.(z+x)4)3)2$ \\
     $\lambda x.(\lambda y.y^2 - (4+x)3)2$ \\
@@ -99,8 +105,21 @@ Utilizando o interpretador Haskell online \href{http://ghc.io}{ghc.io}, as resol
     (d) $\lambda xy.x + y\ (3)(7)$ \\
     $3 + 7 = \mathbf{10}$
 
-    % \item (a)
+    \item (a) $\lambda x.x(xy)(\lambda u.u)$ \\
+    $\lambda u.u(\lambda u.uy) \\
+    \mathbf{\lambda u.uy}$ \\ \\
+    (b) $\lambda y.(\lambda x.y \times y + x)(z)$ \\
+    $\mathbf{\lambda x.z^2 + x}$ \\ \\
+    (c) $\lambda x.(\lambda y.(yx)\lambda i.i)\lambda p.\lambda q.p$ \\
+    $\lambda x.(\lambda i.i x)\lambda p.\lambda q.p$ \\
+    $\lambda i.i(\lambda p.\lambda q.p)$ \\
+    $\mathbf{\lambda p.\lambda q.p}$ \\ \\
+    (d) $\lambda x.x(\lambda y.(\lambda x.xy)x)$ \\
+    $\lambda x.x(\lambda x.xx)$ \\
+    $\mathbf{\lambda x.xx}$ \\ \\
+    (e) $(\lambda x.xx)(\lambda y.y)$ \\
+    $\lambda y.y(\lambda y.y)$ \\
+    $\mathbf{\lambda y.y}$
 \end{enumerate}
 
 \end{document}
-
