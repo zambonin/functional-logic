@@ -229,11 +229,11 @@ numero_pre_req_disc(N, L) :-
 
 %% questão 6
 max([R], R).
-max([X|Xs], R):- 
-    max(Xs, T), 
+max([X|Xs], R):-
+    max(Xs, T),
     (X > T -> R = X ; R = T).
-most_pre_req(Y) :- 
-    findall(Z, numero_pre_req_disc(H, Z), QntReq), 
+most_pre_req(Y) :-
+    findall(Z, numero_pre_req_disc(H, Z), QntReq),
     max(QntReq, K), numero_pre_req_disc(Y, K).
 
 %% questão 7
@@ -244,27 +244,28 @@ numero_disc_como_pre(N, L) :-
     length(List, L).
 
 %% questão 8
-qntPosReqDisciplina(X, Y) :- 
-    setof(Z, tranca_o_que(X, Z), All), 
+qntPosReqDisciplina(X, Y) :-
+    setof(Z, tranca_o_que(X, Z), All),
     length(All, Y).
-disc_mais_importante(Y) :- 
-    findall(Z, qntPosReqDisciplina(_, Z), All), 
-    max(All, K), 
+disc_mais_importante(Y) :-
+    findall(Z, qntPosReqDisciplina(_, Z), All),
+    max(All, K),
     qntPosReqDisciplina(Y, K).
 
 %% questão 9
-seq(X,[]) :- 
+seq(X,[]) :-
     \+pre(X, _).
-seq(X,[Y|L]) :- 
-    pre(X, Y), 
+seq(X,[Y|L]) :-
+    pre(X, Y),
     seq(Y, L).
-questao9C(Y) :- 
-    findall(Z, (numero_pre_req_disc(_, Z)), All), 
-    max(All, M), 
+questao9C(Y) :-
+    findall(Z, (numero_pre_req_disc(_, Z)), All),
+    max(All, M),
     numero_pre_req_disc(Y, M).
 
 %% questão 10
-calcular_maior_num_discp(A, B) :-
-    numero_pre_req_disc(A, Y), 
-    numero_pre_req_disc(B, V), 
+%% * retorna a matéria com o maior número de pré-requisitos
+calcular_maior_num_prereq(A, B) :-
+    numero_pre_req_disc(A, Y),
+    numero_pre_req_disc(B, V),
     (Y < V -> write(B); write(A)).
