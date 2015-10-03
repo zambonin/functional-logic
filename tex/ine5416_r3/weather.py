@@ -18,7 +18,8 @@ url = "http://weather.noaa.gov/weather/current/%s.html" % icao_code
 request = urlopen(url)
 source = request.read().decode('utf-8')
 
-table_rows = re.findall(r'<TD><FONT FACE="Arial,Helvetica">  .+?\n </FONT></TD>', source)[:2]
+table_rows = re.findall(r'<TD><FONT FACE="Arial,Helvetica">'
+                        '  .+?\n </FONT></TD>', source)[:2]
 clean_data = []
 for i in table_rows:
     clean_data.append(re.sub(r'<[^>]*>', '', i).strip())
