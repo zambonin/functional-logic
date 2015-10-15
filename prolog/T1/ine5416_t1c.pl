@@ -68,9 +68,9 @@ disc_mais_importante(Y) :-
     qntPosReqDisciplina(Y, K).
 
 %% questão 9
-seq(X,[]) :-
+seq(X, []) :-
     \+pre(X, _).
-seq(X,[Y|L]) :-
+seq(X, [Y|L]) :-
     pre(X, Y),
     seq(Y, L).
 questao9C(Y) :-
