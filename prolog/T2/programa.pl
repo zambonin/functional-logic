@@ -41,6 +41,14 @@ search :-
     write('searchLast(Id, N).'), nl,
     write('Lista os <N> ultimos deslocamentos de <Id>.').
 
+commit :-
+    open('desenhos.pl', write, Stream),
+    telling(Screen),
+    tell(Stream),
+    listing(xy),
+    tell(Screen),
+    close(Stream).
+
 load :-
     retractall(xy(_, _, _)),
     open('desenhos.pl', read, Stream),
@@ -53,19 +61,37 @@ load :-
 new(Id, X, Y) :-
     xy(Id, _, _),
     assertz(xy(Id, X, Y)),
+    asserta(list(Id, X, Y)),
     !.
 
 new(Id, X, Y) :-
     asserta(xy(Id, X, Y)),
+    asserta(list(Id, X, Y)),
     !.
 
 searchAll(Id) :-
     listing(xy(Id, _, _)).
 
-commit :-
-    open('desenhos.pl', write, Stream),
-    telling(Screen),
-    tell(Stream),
-    listing(xy),
-    tell(Screen),
-    close(Stream).
+searchFirst(Id, N) :-
+    findall(V, (xy(Id, X, Y), append([Id], [X], L), append(L, [Y], V)), All),
+    between(1, N, Mid),
+    nth1(Mid, All, Vertex),
+    write(Vertex),
+    write(' '),
+    false.
+
+searchLast(Id, N) :-
+    findall(V, (xy(Id, X, Y), append([Id], [X], L), append(L, [Y], V)), All),
+    length(All, Size),
+    Init is Size - N,
+    between(Init, Size, Mid),
+    nth0(Mid, All, Vertex),
+    write(Vertex),
+    write(' '),
+    false.
+
+undo:-
+    list(X, Y, Z),
+    retract(list(X, Y, Z)),
+    retract(xy(X, Y, Z)),
+    !.

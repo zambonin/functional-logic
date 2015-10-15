@@ -23,9 +23,9 @@ svgpath([X|Lx], [Y|Ly]) :-
 svgheader :-
    writeln('<?xml version="1.0" encoding="UTF-8" standalone="no"?>
      <svg xmlns="http://www.w3.org/2000/svg"
-     width="1000.0"
-     height="1000.0"
-     viewBox="0 0 1000.0 1000.0">').
+     width="500.0"
+     height="500.0"
+     viewBox="0 0 500.0 500.0">').
 
 svgbody([]).
 svgbody([Id|T]) :-
