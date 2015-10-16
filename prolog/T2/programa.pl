@@ -16,7 +16,7 @@ menu :-
     writeln('commit.'),
     writeln('   Grava alteracoes de todos os desenhos no banco de dados.'),
     writeln('figura(Id, X, Y).'),
-    writeln('alteracoes'),
+    writeln('   Desenha um tetrimino tipo Z. X = Y recomendado.'),
     writeln('load.'),
     writeln('   Carrega todos os desenhos do banco de dados para a memoria.'),
     writeln('new(Id, X, Y).'),
@@ -89,6 +89,21 @@ commit :-
     listing(xy),
     tell(Screen),
     close(Stream).
+
+figura(Id, X, Y) :-
+    Right is X*2,
+    BigLeft is (-2)*X,
+    Left is (-1)*X,
+    Up is (-1)*Y,
+    new(Id, X, Y),
+    new(Id, Right, 0),
+    new(Id, 0, Y),
+    new(Id, X, 0),
+    new(Id, 0, Y),
+    new(Id, BigLeft, 0),
+    new(Id, 0, Up),
+    new(Id, Left, 0),
+    new(Id, 0, Up).
 
 load :-
     retractall(xy(_, _, _)),
