@@ -21,11 +21,9 @@ svgpath([X|Lx], [Y|Ly]) :-
     svgpath(Lx, Ly).
 
 svgheader :-
-   writeln('<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-     <svg xmlns="http://www.w3.org/2000/svg"
-     width="500.0"
-     height="500.0"
-     viewBox="0 0 500.0 500.0">').
+    writeln('<?xml version="1.0" encoding="UTF-8" standalone="no"?>'),
+    write('<svg xmlns="http://www.w3.org/2000/svg" width="500.0" '),
+    writeln('height="500.0" viewBox="0 0 500.0 500.0">').
 
 svgbody([]).
 svgbody([Id|T]) :-
@@ -35,7 +33,7 @@ svgbody([Id|T]) :-
     write(Id),
     write('" d="m '),
     svgpath(Lx, Ly),
-    write('z"/>'), nl,
+    writeln('z"/>'),
     svgbody(T).
 
 svgfooter :-

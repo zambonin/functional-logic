@@ -11,37 +11,44 @@
 :- compile('desenhos.pl').
 
 menu :-
-    write('change.'), nl,
-    write('Modifica um deslocamento existente do desenho.'), nl,
-    write('commit.'), nl,
-    write('Grava alteracoes de todos os desenhos no banco de dados.'), nl,
-    write('load.'), nl,
-    write('Carrega todos os desenhos do banco de dados para a memoria.'), nl,
-    write('new(Id, X, Y).'), nl,
-    write('Insere um deslocamento no desenho com identificador <Id>'), nl,
-    write('(se primeira insercao, trata-se de um ponto inicial).'), nl,
-    write('remove.'), nl,
-    write('Remove um determinado deslocamento existente do desenho.'), nl,
-    write('search.'), nl,
-    write('Consulta pontos do desenho.'), nl,
-    write('undo.'), nl,
-    write('Remove o deslocamento inserido mais recentemente.').
+    writeln('change.'),
+    writeln('   Modifica um deslocamento existente do desenho.'),
+    writeln('commit.'),
+    writeln('   Grava alteracoes de todos os desenhos no banco de dados.'),
+    writeln('figura(Id, X, Y).'),
+    writeln('alteracoes'),
+    writeln('load.'),
+    writeln('   Carrega todos os desenhos do banco de dados para a memoria.'),
+    writeln('new(Id, X, Y).'),
+    writeln('   Insere um deslocamento no desenho com identificador <Id>'),
+    writeln('(se primeira insercao, trata-se de um ponto inicial).'),
+    writeln('quadrado(Id, X, Y, Lado).'),
+    writeln('   Desenha um quadrado de lado `Lado`.'),
+    writeln('remove.'),
+    writeln('   Remove um determinado deslocamento existente do desenho.'),
+    writeln('replica(Id, N, Dx, Dy).'),
+    writeln('   Replica um desenho N vezes com deslocamentos Dx, na'),
+    writeln('   horizontal, e Dy, na vertical.'),
+    writeln('search.'),
+    writeln('   Consulta pontos do desenho.'),
+    writeln('undo.'),
+    writeln('   Remove o deslocamento inserido mais recentemente.').
 
 change :-
-    write('change(Id, X, Y, Xnew, Ynew).'), nl,
-    write('Altera qualquer ponto de <Id>.'), nl,
-    write('changeFirst(Id, Xnew, Ynew).'), nl,
-    write('Altera o ponto inicial de <Id>'), nl,
-    write('changeLast(Id, Xnew, Ynew).'), nl,
-    write('Altera o deslocamento final de <Id>.').
+    writeln('change(Id, X, Y, Xnew, Ynew).'),
+    writeln('   Altera qualquer ponto de <Id>.'),
+    writeln('changeFirst(Id, Xnew, Ynew).'),
+    writeln('   Altera o ponto inicial de <Id>'),
+    writeln('changeLast(Id, Xnew, Ynew).'),
+    writeln('   Altera o deslocamento final de <Id>.').
 
 search :-
-    write('searchAll(Id).'), nl,
-    write('Ponto inicial e todos os deslocamentos de <Id>.'), nl,
-    write('searchFirst(Id, N).'), nl,
-    write('Ponto inicial e os <N-1> primeiros deslocamentos de <Id>.'), nl,
-    write('searchLast(Id, N).'), nl,
-    write('Lista os <N> ultimos deslocamentos de <Id>.').
+    writeln('searchAll(Id).'),
+    writeln('   Ponto inicial e todos os deslocamentos de <Id>.'),
+    writeln('searchFirst(Id, N).'),
+    writeln('   Ponto inicial e os <N-1> primeiros deslocamentos de <Id>.'),
+    writeln('searchLast(Id, N).'),
+    writeln('   Lista os <N> ultimos deslocamentos de <Id>.').
 
 change(Id, X, Y, Xnew, Ynew) :-
     (findall(V, (xy(I, A, B), append([I], [A], L), append(L, [B], V)), All),
@@ -99,13 +106,37 @@ new(Id, X, Y) :-
     !.
 
 new(Id, X, Y) :-
-    asserta(xy(Id, X, Y)),
+    assertz(xy(Id, X, Y)),
     asserta(list(Id, X, Y)),
     !.
+
+quadrado(Id, X, Y, Lado) :-
+    new(Id, X, Y),
+    new(Id, Lado, 0),
+    new(Id, 0, Lado),
+    NLado is (-1) * Lado,
+    new(Id, NLado, 0).
 
 remove(Id, X, Y) :-
     retract(xy(Id, X, Y)),
     retract(list(Id, X, Y)).
+
+replica(Id, N, Dx, Dy) :-
+    between(1, N, T),
+    (findall(V, (xy(Id, X, Y), append([Id], [X], L), append(L, [Y], V)), All),
+     length(All, S),
+     between(0, S, K),
+     nth0(K, All, M),
+     nth0(0, M, IdM),
+     nth0(1, M, XM),
+     nth0(2, M, YM),
+     atom_concat(IdM, '_r', Temp),
+     atom_concat(Temp, T, NewId),
+     NewX is XM + (Dx*T),
+     NewY is YM + (Dy*T),
+     ((K =:= 0) -> new(NewId, NewX, NewY);
+       new(NewId, XM, YM))),
+    false.
 
 searchAll(Id) :-
     listing(xy(Id, _, _)).
@@ -120,9 +151,9 @@ searchFirst(Id, N) :-
 
 searchLast(Id, N) :-
     findall(V, (xy(Id, X, Y), append([Id], [X], L), append(L, [Y], V)), All),
-    length(All, Size),
-    Init is Size - N,
-    between(Init, Size, Mid),
+    length(All, S),
+    Init is S - N,
+    between(Init, S, Mid),
     nth0(Mid, All, Vertex),
     write(Vertex),
     write(' '),
