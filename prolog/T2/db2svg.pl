@@ -6,7 +6,7 @@
 %% %%
 
 %% T2A
-%% Usage: swipl -c db2svg.pl 2>/dev/null > desenhos.svg && rm a.out
+%% Usage: swipl -c db2svg.pl 2>/dev/null > picture.svg && rm a.out
 %% Open the SVG file with your preferred viewer or `cat` its contents.
 
 :- initialization(convert).

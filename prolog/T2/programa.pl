@@ -6,7 +6,9 @@
 %% %%
 
 %% T2A
-%% Usage: swipl -s programa.pl, then type `menu.` inside the interpreter.
+%% Usage: swipl -qs programa.pl, then type `menu.` inside the interpreter.
+
+:- compile('desenhos.pl').
 
 menu :-
     write('change.'), nl,
@@ -27,7 +29,7 @@ menu :-
 
 change :-
     write('change(Id, X, Y, Xnew, Ynew).'), nl,
-    write('Altera o ponto inicial de <Id>.'), nl,
+    write('Altera qualquer ponto de <Id>.'), nl,
     write('changeFirst(Id, Xnew, Ynew).'), nl,
     write('Altera o ponto inicial de <Id>'), nl,
     write('changeLast(Id, Xnew, Ynew).'), nl,
@@ -40,6 +42,38 @@ search :-
     write('Ponto inicial e os <N-1> primeiros deslocamentos de <Id>.'), nl,
     write('searchLast(Id, N).'), nl,
     write('Lista os <N> ultimos deslocamentos de <Id>.').
+
+change(Id, X, Y, Xnew, Ynew) :-
+    (findall(V, (xy(I, A, B), append([I], [A], L), append(L, [B], V)), All),
+     length(All, T),
+     retractall(xy(_, _, _)),
+     retractall(list(_, _, _)),
+     between(0, T, K),
+     nth0(K, All, P),
+     nth0(0, P, IdP),
+     nth0(1, P, XP),
+     nth0(2, P, YP),
+     (IdP = Id, XP = X, YP = Y -> new(IdP, Xnew, Ynew);
+      new(IdP, XP, YP)),
+     false);
+    true.
+
+changeFirst(Id, Xnew, Ynew) :-
+    remove(Id, _, _),
+    !,
+    asserta(xy(Id, Xnew, Ynew)),
+    assertz(list(Id, Xnew, Ynew)).
+
+changeLast(Id, Xnew, Ynew) :-
+    findall(V, (xy(Id, X, Y), append([Id], [X], L), append(L, [Y], V)), All),
+    last(All, Last),
+    nth0(0, Last, IdL),
+    nth0(1, Last, XL),
+    nth0(2, Last, YL),
+    remove(IdL, XL, YL),
+    assertz(xy(Id, Xnew, Ynew)),
+    asserta(list(Id, Xnew, Ynew)),
+    !.
 
 commit :-
     open('desenhos.pl', write, Stream),
@@ -69,6 +103,10 @@ new(Id, X, Y) :-
     asserta(list(Id, X, Y)),
     !.
 
+remove(Id, X, Y) :-
+    retract(xy(Id, X, Y)),
+    retract(list(Id, X, Y)).
+
 searchAll(Id) :-
     listing(xy(Id, _, _)).
 
@@ -90,8 +128,8 @@ searchLast(Id, N) :-
     write(' '),
     false.
 
-undo:-
+undo :-
     list(X, Y, Z),
-    retract(list(X, Y, Z)),
     retract(xy(X, Y, Z)),
+    retract(list(X, Y, Z)),
     !.
