@@ -1,0 +1,46 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, left=20mm, right=20mm, top=20mm, bottom=20mm]{geometry}
+\usepackage[colorlinks=true, urlcolor=blue]{hyperref}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+
+\begin{document}
+
+\subsubsection*{INE5416 - Paradigmas de Programação (2015/2) \\
+    Gustavo Zambonin \\
+    Relatório 7 - Módulos
+}
+
+\textbf{Nota}: todos os excertos de código foram executados com
+\texttt{ghci ine5416\_r7.hs} e chamados no interpretador.
+
+\subsubsection*{Questão 1}
+Utilizando o conceito de módulos, foi criado um programa que
+permite calcular valores para as funções hiperbólicas listadas abaixo,
+sendo $e = \sum\limits_{n=0}^\infty \frac{1}{n!} = \frac{1}{0!} +
+\frac{1}{1!} + \frac{1}{2!} + \frac{1}{3!} + \dots$ a base do logaritmo
+natural, calculada pela soma dos 1000 primeiros termos da série.
+\begin{itemize}
+    \item $\sinh x = \dfrac{1 - e^{-2x}}{2e^{-x}}$
+    \item $\cosh x = \dfrac{1 + e^{-2x}}{2e^{-x}}$
+    \item $\tanh x = \dfrac{\sinh x}{\cosh x}$
+    \item $\coth x = \dfrac{\cosh x}{\sinh x}$
+\end{itemize}
+O módulo retorna, comparativamente à funções nativas da linguagem Haskell,
+valores significativos apenas até a sexta casa decimal, por conta do
+número de computações limitadas da constante $e$, como pode ser
+visto abaixo.
+
+\begin{verbatim}
+*Hyperbolic> 1/tanh 1
+1.3130352854993315
+*Hyperbolic> value(Coth 1)
+1.3130355
+\end{verbatim}
+Outras funções podem ser chamadas, respectivamente, por
+\texttt{value(Sinh x)}, \texttt{value(Cosh x)} e \texttt{value(Tanh x)},
+para $x \in \mathbb{R}$. 
+
+\end{document}
