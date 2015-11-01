@@ -1,13 +1,14 @@
-%% %%
 %% INE5416 - Paradigmas de Programação (2015/2)
-%% Grupo: Gustavo Zambonin (13104307)
-%%        Lucas Kramer de Sousa (13100757)
-%%        Marcello da Silva Klingelfus Junior (13100764)
-%% %%
+%%  Gustavo Zambonin (13104307)
+%%  Lucas Kramer de Sousa (13100757)
+%%  Marcello da Silva Klingelfus Junior (13100764)
+%%
+%% Original code by A. G. Silva
 
 %% T2A
 %% Usage: swipl -c db2svg.pl 2>/dev/null > picture.svg && rm a.out
 %% Open the SVG file with your preferred viewer or `cat` its contents.
+%% Requires consistent filenames (`desenhos.pl`)!
 
 :- initialization(convert).
 

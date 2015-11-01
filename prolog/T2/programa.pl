@@ -1,12 +1,13 @@
-%% %%
 %% INE5416 - Paradigmas de Programação (2015/2)
-%% Grupo: Gustavo Zambonin (13104307)
-%%        Lucas Kramer de Sousa (13100757)
-%%        Marcello da Silva Klingelfus Junior (13100764)
-%% %%
+%%  Gustavo Zambonin (13104307)
+%%  Lucas Kramer de Sousa (13100757)
+%%  Marcello da Silva Klingelfus Junior (13100764)
+%%
+%% Original code by A. G. Silva
 
 %% T2A
 %% Usage: swipl -qs programa.pl, then type `menu.` inside the interpreter.
+%% Requires consistent filenames (`desenhos.pl`)!
 
 :- compile('desenhos.pl').
 
@@ -21,7 +22,7 @@ menu :-
     writeln('   Carrega todos os desenhos do banco de dados para a memoria.'),
     writeln('new(Id, X, Y).'),
     writeln('   Insere um deslocamento no desenho com identificador <Id>'),
-    writeln('(se primeira insercao, trata-se de um ponto inicial).'),
+    writeln('   (se primeira insercao, trata-se de um ponto inicial).'),
     writeln('quadrado(Id, X, Y, Lado).'),
     writeln('   Desenha um quadrado de lado `Lado`.'),
     writeln('remove.'),
@@ -87,6 +88,10 @@ commit :-
     telling(Screen),
     tell(Stream),
     listing(xy),
+    listing(list),
+    listing(xylast),
+    listing(ang),
+    listing(idlast),
     tell(Screen),
     close(Stream).
 
@@ -107,6 +112,7 @@ figura(Id, X, Y) :-
 
 load :-
     retractall(xy(_, _, _)),
+    retractall(xylast(_, _)),
     open('desenhos.pl', read, Stream),
     repeat,
         read(Stream, Data),
@@ -179,3 +185,86 @@ undo :-
     retract(xy(X, Y, Z)),
     retract(list(X, Y, Z)),
     !.
+
+%% T2B
+%% Usage: refer to the header of `gramatica.pl`.
+
+:- initialization(new0).
+
+new0 :-
+    consult('gramatica.pl'),
+    load,
+    (xylast(_,_), ! -> xylast(_, _), idlast(NewId),
+                       nb_setval(indexId, NewId), uselapis;
+     new_angle(90),
+     nb_setval(indexId, -1),
+     uselapis,
+     nb_getval(atualId, Id),
+     new(Id, 250, 250),
+     asserta(xylast(250, 250)),
+     true).
+
+new_angle(Ang) :-
+    retractall(ang(_)),
+    asserta(ang(Ang)).
+
+deslocar(X, Y) :-
+    nb_getval(lapis, L),
+    nb_getval(atualId, Id),
+    xylast(OldX, OldY),
+    (L =:= 1 -> new(Id, X, Y)),
+    retractall(xylast(_, _)),
+    NewX is OldX + X,
+    NewY is OldY + Y,
+    asserta(xylast(NewX, NewY)).
+
+parafrente(N) :-
+    ang(G),
+    X is cos((G*pi)/180)*N,
+    Y is sin((G*pi)/180)*N,
+    deslocar(X, Y).
+
+paratras(N) :-
+    ang(G),
+    X is cos((G*pi)/180)*N,
+    Y is sin((G*pi)/180)*N*(-1),
+    deslocar(X, Y).
+
+giradireita(G) :-
+    ang(H),
+    Angle is H + G,
+    new_angle(Angle).
+
+giraesquerda(G) :-
+    ang(H),
+    Angle is H - G,
+    new_angle(Angle).
+
+repita(N, Command) :-
+    between(1, N, _),
+    comando(Command),
+    false.
+
+usenada :-
+    nb_setval(lapis, 0).
+
+uselapis :-
+    nb_setval(lapis, 1),
+    nb_getval(indexId, LastID),
+    NumID is LastID + 1,
+    nb_setval(indexId, NumID),
+    retractall(idlast(_)),
+    asserta(idlast(NumID)),
+    atom_concat(id, NumID, Id),
+    nb_setval(atualId, Id),
+    (NumID >= 2 -> xylast(X, Y), new(Id, X, Y);
+     true).
+
+tartaruga :-
+    retractall(xy(_, _, _)),
+    nb_setval(indexId, -1),
+    uselapis,
+    nb_getval(atualId, Id),
+    new(Id, 250, 250),
+    retractall(xylast(_, _)),
+    asserta(xylast(250, 250)).
