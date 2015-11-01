@@ -1,0 +1,49 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, left=20mm, right=20mm, top=20mm, bottom=20mm]{geometry}
+\usepackage[colorlinks=true, urlcolor=blue]{hyperref}
+
+\begin{document}
+
+\subsubsection*{INE5416 - Paradigmas de Programação (2015/2) \\
+    Gustavo Zambonin \\
+    Relatório 5 - Análise léxica: Sintaxe (Haskell)
+}
+
+\textbf{Nota}: todos os excertos de código foram executados com \texttt{ghci ine5416\_r5.hs} e chamados no interpretador.
+
+\subsubsection*{Questão 1}
+De acordo com \href{http://rigaux.org/language-study/syntax-across-languages/CntrFlow.html}{referências} para a sintaxe do Haskell para \textit{switches}, a indentação correta para o código apresentado seria a seguinte:
+\begin{verbatim}
+f x = case x of
+    0 -> 1
+    1 -> 5
+    2 -> 2
+    _ -> 1
+
+*Main> f 1
+5
+\end{verbatim}
+De modo similar, o código apresentado para a operação \textit{quicksort} ficaria da seguinte maneira (lista de números aleatórios retirada e adaptada de \href{https://random.org/integer-sets/?sets=1&num=50&min=1&max=50&commas=on&order=index&format=plain}{random.org}):
+\begin{verbatim}
+quicksort :: (Ord a) => [a] -> [a]
+quicksort [] = []
+quicksort (x:xs)=quicksort lt++ [x]++ quicksort ge where {lt=[y|y<-xs,y<x];ge=[y|y<-xs,y>=x]}
+
+*Main> quicksort [8, 29, 39, 31, 46, 20, 33, 19, 10, 23, 14, 15, 30, 27, 13, 48, 44, 22, 7,
+12, 5, 2, 18, 11, 25, 34, 45, 9, 28, 21, 43, 17, 50, 35, 32, 41, 6, 3, 24, 42, 40, 37, 16,
+47, 4, 38, 1, 49, 36, 26]
+[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,
+34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50]
+\end{verbatim}
+
+\subsubsection*{Questão 2}
+\begin{enumerate}
+\item Uma lista de 1 a 1000 pode ser expressada no interpretador apenas digitando \texttt{[1..1000]}, ou armazenada em uma variável a ser chamada posteriormente. 
+\item Uma progressão aritmética de razão 3 também pode ser obtida de modo interativo, digitando \texttt{[1, 4..99]}. Haskell entende que existe uma diferença de 3 unidades entre os dois primeiros elementos e reproduz isto até o elemento final da lista.
+\item Uma progressão geométrica de razão 2 com 50 termos pode ser generalizada, em virtude da sua utilidade para múltiplos primeiros termos, como \texttt{pg n = [n*(2**(x-1)) | x <- [1..50]]}. A partir dessa declaração, chama-se \texttt{pg 2} se $a_1 = 2$, por exemplo.
+\item A definição estendida da função fatorial não precisa ser declarada explicitamente em Haskell. Como a ideia da operação é multiplicar todos os elementos de uma lista com $n$ números, começando pelo $1$, então pode-se obter este produto com a função \texttt{fat n = product [1..n]}, chamando \texttt{fat 5}, por exemplo.
+\end{enumerate}
+
+\end{document}
