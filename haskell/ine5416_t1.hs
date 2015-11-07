@@ -1,3 +1,6 @@
+-- INE5416 - Paradigmas de Programação (2015/2)
+-- Gustavo Zambonin (13104307)
+
 module Shapes (Shape (Sphere, Cylinder, Cone, Frustum, OblateSpheroid,
                       ProlateSpheroid),
                Radius, Height, BaseRadius, UpperBaseRadius, BiggerSemiAxis,
