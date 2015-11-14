@@ -1,0 +1,49 @@
+INE5416 - Paradigmas de Programação (2015/2)
+Gustavo Zambonin
+Relatório 3 - Estrutura das linguagens
+
+* weather.py
+
+Este programa foi criado utilizando uma abordagem mais procedimental. Existem 
+diversas aberturas para utilização de funções, sejam estas aninhadas ou não, mas
+optou-se por uma versão mais simples e legível, que mostra claramente o seu 
+objetivo: um jeito rápido e simples para descobrir a temperatura atual, dada a 
+sua localização arbitrária (a partir de códigos ICAO[1]). O código-fonte 
+apresenta estruturas como expressões regulares e formatação de strings, além de 
+comunicação com a internet, de modo a simplificar o desenvolvimento e também o 
+resultado final, mostrado ao usuário desta maneira:
+
+        [23:35] zambonin@Galileo ~ $ python weather.py SBFL
+        The temperature is now 18 C, and the weather is partly cloudy.
+
+* tracking.py
+
+De modo contrário ao código anterior, a ideia deste programa é utilizar o máximo
+possível de abordagens funcionais, como list comprehensions[2] ("emprestados" de
+Haskell, são uma forma de retonar uma lista em apenas uma linha, dada certa 
+condição), e suas próprias funções nativas, além de explicitamente dividir o 
+programa em funções. A estratégia geral não difere muito -- procurar informações
+necessárias no código-fonte de uma página na internet e separar os dados
+corretamente, novamente com expressões regulares e \textit{slices} em listas.
+A saída, embora levemente crua, consegue ser perfeitamente inteligível:
+
+        [23:54] zambonin@Galileo ~ $ python tracking.py PI906191285BR
+        [['08/09/2015 14:09',
+          'AC MARAVILHA - Maravilha/SC',
+          'Postado depois do horário limite da agência',
+          'Objeto sujeito a encaminhamento no próximo dia útil  '],
+         ['08/09/2015 14:17',
+          'AC MARAVILHA - Maravilha/SC',
+          'Encaminhado',
+          'Encaminhado para ENTREPOSTO CHAPECO - Chapeco/SC'],
+         ['08/09/2015 18:02',
+          'ENTREPOSTO CHAPECO - Chapeco/SC',
+          'Encaminhado',
+          'Em trânsito para CTE FLORIANOPOLIS/GTURN3 (BLUMENAU) - Blumenau/SC'],
+         ['09/09/2015 16:56',
+          'CTE FLORIANOPOLIS/GTURN3 (BLUMENAU) - Blumenau/SC',
+          'Encaminhado',
+          'Em trânsito para CTE BRASILIA - Brasilia/DF']]
+
+[1] http://www.airlineupdate.com/content_public/codes/airportcodes/airport_icaocodes/airport_icao.htm
+[2] https://docs.python.org/3/howto/functional.html#generator-expressions-and-list-comprehensions
