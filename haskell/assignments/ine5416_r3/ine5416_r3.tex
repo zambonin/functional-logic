@@ -13,7 +13,16 @@
 
 \subsubsection*{\texttt{weather.py}}
 \begin{itemize}
-    \item Este programa foi criado utilizando uma abordagem mais procedimental. Existem diversas aberturas para utilização de funções, sejam estas aninhadas ou não, mas optou-se por uma versão mais simples e legível, que mostra claramente o seu objetivo: um jeito rápido e simples para descobrir a temperatura atual, dada a sua localização arbitrária (a partir de \href{http://www.airlineupdate.com/content_public/codes/airportcodes/airport_icaocodes/airport_icao.htm}{códigos ICAO}). O código-fonte apresenta estruturas como expressões regulares e formatação de \textit{strings}, além de comunicação com a internet, de modo a simplificar o desenvolvimento e também o resultado final, mostrado ao usuário desta maneira:
+    \item Este programa foi criado utilizando uma abordagem mais procedimental.
+    Existem diversas aberturas para utilização de funções, sejam estas aninhadas
+    ou não, mas optou-se por uma versão mais simples e legível, que mostra
+    claramente o seu objetivo: um jeito rápido e simples para descobrir a
+    temperatura atual, dada a sua localização arbitrária (a partir de
+    \href{http://www.airlineupdate.com/content_public/codes/airportcodes/airport_icaocodes/airport_icao.htm}
+    {códigos ICAO}). O código-fonte apresenta estruturas como expressões
+    regulares e formatação de \textit{strings}, além de comunicação com a
+    internet, de modo a simplificar o desenvolvimento e também o resultado
+    final, mostrado ao usuário desta maneira:
 \end{itemize}
 
 \begin{verbatim}
@@ -23,7 +32,17 @@
 
 \subsubsection*{\texttt{tracking.py}}
 \begin{itemize}
-    \item De modo contrário ao código anterior, a ideia deste programa é utilizar o máximo possível de abordagens funcionais, como \href{https://docs.python.org/3/howto/functional.html#generator-expressions-and-list-comprehensions}{\textit{list comprehensions}} ("emprestados" de Haskell, são uma forma de retonar uma lista em apenas uma linha, dada certa condição), e suas próprias funções nativas, além de explicitamente dividir o programa em funções. A estratégia geral não difere muito -- procurar informações necessárias no código-fonte de uma página na internet e separar os dados corretamente, novamente com expressões regulares e \textit{slices} em listas. A saída, embora levemente crua, consegue ser perfeitamente inteligível:
+    \item De modo contrário ao código anterior, a ideia deste programa é
+    utilizar o máximo possível de abordagens funcionais, como
+    \href{https://docs.python.org/3/howto/functional.html#generator-expressions-and-list-comprehensions}
+    {\textit{list comprehensions}} ("emprestados" de Haskell, são uma forma de
+    retornar uma lista em apenas uma linha, dada certa condição), e suas
+    próprias funções nativas, além de explicitamente dividir o programa em
+    funções. A estratégia geral não difere muito -- procurar informações
+    necessárias no código-fonte de uma página na internet e separar os dados
+    corretamente, novamente com expressões regulares e \textit{slices} em
+    listas. A saída, embora levemente crua, consegue ser perfeitamente
+    inteligível:
 \end{itemize}
 
 \begin{verbatim}
