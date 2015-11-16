@@ -1,3 +1,5 @@
 # UFSC-INE5416
 
-Dissertative assignments are inside the TeX folder, while the Prolog code is located on the homonymous directory. 
+The repository contains programming assignments in Prolog and Haskell. Some
+dissertative assignments about programming paradigms and the behavior of 
+certain languages are located inside the functional language's folder.
