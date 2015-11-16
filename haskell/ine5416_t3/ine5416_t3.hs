@@ -8,7 +8,7 @@ main = do
     case args of
         [input] -> do
             processFiles input
-        _ -> putStrLn "Usage: ./ine5416_t3 input.bmp"
+        _ -> putStrLn "Usage: ghc ine5416_t3.hs && ./ine5416_t3 input.bmp"
 
 splitRGB (b:g:r:[]) = ([b], [g], [r])
 splitRGB (b:g:[]) = ([b], [g], [0])
