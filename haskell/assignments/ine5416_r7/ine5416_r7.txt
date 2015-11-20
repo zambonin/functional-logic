@@ -5,10 +5,8 @@ Relatório 7 - Módulos
 Nota: todos os excertos de código foram executados com `ghci ine5416_r7.hs` e
 chamados no interpretador.
 
-Questão 1
-
 Utilizando o conceito de módulos, foi criado um programa que permite calcular
-valores para as funções hiperbólicas listadas abaixo, sendo 
+valores para as funções hiperbólicas listadas abaixo, sendo
 
     e = somatório de n = 0 até infinito de 1/n!
     e = 1 + 1/1 + 1/2! + 1/3! + ...
@@ -31,4 +29,4 @@ computações limitadas da constante $e$, como pode ser visto abaixo.
         1.3130355
 
 Outras funções podem ser chamadas, respectivamente, por `value(Sinh x)`,
-`value(Cosh x)` e `value(Tanh x)`, para x pertencente aos reais. 
+`value(Cosh x)` e `value(Tanh x)`, para x pertencente aos reais.
