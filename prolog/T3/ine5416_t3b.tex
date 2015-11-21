@@ -1,0 +1,90 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, left=20mm, right=20mm, top=20mm, bottom=20mm]{geometry}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+
+\begin{document}
+
+\subsubsection*{INE5416 - Paradigmas de Programação (2015/2) \\
+    Gustavo Zambonin, Lucas Kramer de Sousa,
+    Marcello da Silva Klingelfus Junior \\
+    Programação Lógica - T3B
+}
+
+\textbf{Nota}: todos os excertos de código foram executados com
+\texttt{swipl -qs ine5416\_t3b.pl} e chamados no interpretador. Recomenda-se,
+também, utilizar aspas duplas em nomes de arquivos como argumentos.
+
+\begin{itemize}
+
+\item \texttt{load}
+
+Este predicado é responsável por carregar o conteúdo do arquivo
+\texttt{database.pl}, necessário para o discernimento de imagens pelo programa
+a partir de seus momentos de Hu. É inicializado na compilação/interpretação do
+código para praticidade do usuário.
+
+\item \texttt{write\_database}
+
+Escreve modificações (adição de novas imagens, por exemplo) no banco de dados.
+
+\item \texttt{new}
+
+Habilita a adição de novas imagens de duas maneiras: a partir de um arquivo PGM
+(o identificador deste será derivado do nome de arquivo automaticamente), ou
+com a inserção dos momentos de Hu e identificador manualmente (geralmente
+utilizado internamente pelo programa).
+
+\item \texttt{check\_database}
+
+Comanda a lógica de verificação de proximidade de momentos de Hu. Após a leitura
+do arquivo e cálculo do somatório de momentos de Hu, o predicado busca o menor
+destes já existente no banco de dados e pergunta ao usuário se a descrição da
+imagem é convergente com o resultado de comparação. Se a resposta for positiva,
+uma nova linha será adicionada ao banco de dados, com o mesmo identificador
+apresentado. Do contrário, é responsabilidade do usuário descrever o novo tipo
+de imagem, que eventualmente também será adicionada ao banco de dados. (Note a
+adição de pontos finais às entradas do usuário.)
+\begin{verbatim}
+?- check_database("ufsc_neg.pgm").
+(y/n) Is this your image? Id: cameraman
+|: n.
+Identify it:
+|: ufsc_neg.
+Image added.
+true.
+
+?- check_database("ufsc_neg.pgm").
+(y/n) Is this your image? Id: ufsc_neg
+|: y.
+No operation is needed.
+true.
+\end{verbatim}
+
+\item \texttt{min\_pos}
+
+Predicado auxiliar que retorna o índice da imagem no banco de dados, de acordo
+com o menor somatório de momentos de Hu retornado pela comparação.
+
+\item \texttt{compare}
+
+Responsável por retornar uma lista contendo o somatório de cada conjunto de
+momentos de Hu de uma imagem no banco de dados, utilizado como critério para
+definir se duas imagens são parecidas o bastante.
+
+\item \texttt{distance}
+
+Implementa a distância Euclidiana entre dois pontos em um espaço, utilizada
+como medidor de divergência entre imagens no banco de dados. A distância é dada
+pela fórmula abaixo.
+\begin{gather*}
+d(p,q) = d(q,p)
+= \sqrt{(q_1 - p_1)^2 + (q_2 - p_2)^2 + \dots + (q_n - p_n)^2}
+= \sqrt{\sum\limits_{i=1}^{n} (q_i - p_i)^2}
+\end{gather*}
+
+\end{itemize}
+
+\end{document}
