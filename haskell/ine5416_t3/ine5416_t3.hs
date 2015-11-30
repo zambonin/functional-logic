@@ -1,3 +1,6 @@
+-- INE5416 - Paradigmas de Programação (2015/2)
+-- Gustavo Zambonin (13104307)
+
 import Data.Char
 import System.Environment
 import System.IO
