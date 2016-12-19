@@ -1,0 +1,16 @@
+The first assignment consists of a curriculum graph programmed in Prolog, that
+features some useful functions to check some aspects of the graph, such as
+pre-requisites or which semester a class belongs to.
+
+Original assignment: a68d5f3202e53151b2f0c98f278e689645e125c6
+
+The second assignment deals with creating polygons and outputting them to
+SVG pictures, by making a turtle from the Logo programming language produce
+line graphics.
+
+Original assignment: 8f862129b839193fe2ce8957cdb6e04c778792d0
+
+The third assignment builds on some tools to classify PGM image files
+according to image moments.
+
+Original assignment: 10b04e3b15b52deecaa2080d44c7b28dc38efedc
