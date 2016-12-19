@@ -4,11 +4,11 @@
 # Part 1
 
 def vectorNorm(vector):
-    return sum([i**2 for i in vector])**(1/2)
+    return sum([i**2 for i in vector])**(1 / 2)
 
 
 def scalarVectorMult(vector, scalar):
-    return [scalar*i for i in vector]
+    return [scalar * i for i in vector]
 
 
 def sumVectors(v1, v2):
@@ -53,18 +53,18 @@ def matrixAddition(m1, m2):
 
 def matrixMult(m1, m2):
     tb = transposeMatrix(m2)
-    return [[sum(ea*eb for ea, eb in zip(a, b)) for b in tb] for a in m1]
+    return [[sum(ea * eb for ea, eb in zip(a, b)) for b in tb] for a in m1]
 
 
 def detSarrus(m):
     if len(m) != 3 or len(m[0]) != 3:
         return 0
 
-    posPart = m[0][0]*m[1][1]*m[2][2] + \
-        m[0][1]*m[1][2]*m[0][2] + \
-        m[0][2]*m[1][0]*m[2][1]
-    negPart = m[0][2]*m[1][1]*m[2][0] + \
-        m[0][0]*m[1][0]*m[2][1] + \
-        m[0][1]*m[1][0]*m[2][2]
+    posPart = m[0][0] * m[1][1] * m[2][2] + \
+        m[0][1] * m[1][2] * m[0][2] + \
+        m[0][2] * m[1][0] * m[2][1]
+    negPart = m[0][2] * m[1][1] * m[2][0] + \
+        m[0][0] * m[1][0] * m[2][1] + \
+        m[0][1] * m[1][0] * m[2][2]
 
     return (posPart - negPart)

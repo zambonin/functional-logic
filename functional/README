@@ -1,0 +1,23 @@
+The first assignment was programmed as a module that calculates the area and
+volume of some shapes (spheroids, cylinders, cones and frustums). One may
+use it through the interpreter, creating objects with their measurements:
+
+    $ ghci ine5416_t1.hs
+    ...
+    *Shapes> volume (Cylinder 3 4)
+    50.265484
+
+The second assignment is a module that calculates some summations, and
+approximations through Taylor series. Again, it may be used through the
+interpreter:
+
+    $ ghci ine5416_t2.hs
+    ...
+    *Summation> almostEuler 1000
+    2.7182818284590455
+
+The third assignment separates a BMP file with a simple header and no alpha
+channel into arrays of red, blue and green floating point intensity values,
+writing these to files.
+
+    $ runhaskell ine5416_t3 input.bmp

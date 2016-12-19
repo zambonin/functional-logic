@@ -34,6 +34,7 @@ def parse_info(source):
 
     return partition(info, markers)[1:][::-1] or 'Invalid tracking number.'
 
+
 tracking_code = sys.argv[1]
 assert len(tracking_code) == 13 and type(tracking_code) == str
 
