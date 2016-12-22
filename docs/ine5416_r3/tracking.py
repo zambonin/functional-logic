@@ -1,9 +1,9 @@
 #!/usr/bin/env python
-
-import re
-import sys
+# -*- coding: utf-8 -*-
 
 from pprint import pprint
+from re import findall, search, sub
+from sys import argv
 
 try:
     from urllib.request import urlopen
@@ -24,18 +24,19 @@ def partition(list, indices):
 
 
 def raw_info(tracking_code):
-    return re.findall(r'<td.+?</td>', fetch_source(tracking_code))
+    return findall(r'<td.+?</td>', fetch_source(tracking_code))
 
 
 def parse_info(source):
-    info = [re.sub(r'<[^>]*>', '', line) for line in source]
+    info = [sub(r'<[^>]*>', '', line) for line in source]
     markers = [info.index(line) for line in info
-               if re.search(r'(\d+/\d+/\d+)', line)]
+               if search(r'(\d+/\d+/\d+)', line)]
 
     return partition(info, markers)[1:][::-1] or 'Invalid tracking number.'
 
 
-tracking_code = sys.argv[1]
-assert len(tracking_code) == 13 and type(tracking_code) == str
+if len(argv) == 2:
+    tracking_code = argv[1]
+    assert len(tracking_code) == 13 and type(tracking_code) == str
 
-pprint(parse_info(raw_info(tracking_code)))
+    pprint(parse_info(raw_info(tracking_code)))

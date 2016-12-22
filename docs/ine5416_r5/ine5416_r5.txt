@@ -15,7 +15,7 @@ indentação correta para o código apresentado seria a seguinte:
             1 -> 5
             2 -> 2
             _ -> 1
-    
+
         *Main> f 1
         5
 
@@ -37,7 +37,7 @@ random.org[2]):
 Questão 2
 
 * Uma lista de 1 a 1000 pode ser expressada no interpretador apenas digitando
-[1..1000], ou armazenada em uma variável a ser chamada posteriormente. 
+[1..1000], ou armazenada em uma variável a ser chamada posteriormente.
 
 * Uma progressão aritmética de razão 3 também pode ser obtida de modo
 interativo, digitando [1, 4..99]. Haskell entende que existe uma diferença de 3
@@ -45,7 +45,7 @@ unidades entre os dois primeiros elementos e reproduz isto até o elemento final
 da lista.
 
 * Uma progressão geométrica de razão 2 com 50 termos pode ser generalizada, em
-virtude da sua utilidade para múltiplos primeiros termos, como 
+virtude da sua utilidade para múltiplos primeiros termos, como
 pg n = [n*(2**(x-1)) | x <- [1..50]]. A partir dessa declaração, chama-se pg 2
 se a1 = 2, por exemplo.
 

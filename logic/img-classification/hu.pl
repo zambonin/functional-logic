@@ -92,7 +92,7 @@ mu(S, MU11, MU02, MU20, MU12, MU21, MU03, MU30) :-
     multiply(L7, L2, L11), multiply(L11, S, L12), sum(L12, MU21),
     multiply(L2, L5, L13), multiply(L13, S, L14), sum(L14, MU03),
     multiply(L1, L7, L15), multiply(L15, S, L16), sum(L16, MU30).
-    
+
 
 x_minus_constant([], _, []).
 x_minus_constant([(X,Y,_)|T], C, L) :-

@@ -4,7 +4,7 @@ Relatório 2 - Estrutura das linguagens
 
 Questão 1
 
-* Yacc é um programa que constrói a parte de um compilador responsável por 
+* Yacc é um programa que constrói a parte de um compilador responsável por
 analisar a parte sintática de um código-fonte qualquer, baseado em uma gramática
 de livre contexto (um conjunto de regras de produção para palavras numa
 linguagem formal). Desenvolvido na AT&T em meados da década de 1970, existem
@@ -17,13 +17,13 @@ sintático com este programa a partir de expressões regulares. Internamente, el
 funciona através de autômatos finitos determinísticos (máquinas que aceitam
 linguagens regulares).
 
-* Flex é a versão aberta do Lex. Funciona de maneira similar, de modo a ler 
+* Flex é a versão aberta do Lex. Funciona de maneira similar, de modo a ler
 "tokens" e reconhecê-los como certas funções da linguagem de programação. Estes
 "tokens" podem ser operadores, palavras-chave, identificadores, números etc..
 Esta é a primeira fase do funcionamento de um compilador atualmente.
 
-* Bison é a versão aberta do Yacc. Novamente, funciona de maneira similar. 
-Estes programas executam a segunda fase do funcionamento de um compilador, 
+* Bison é a versão aberta do Yacc. Novamente, funciona de maneira similar.
+Estes programas executam a segunda fase do funcionamento de um compilador,
 analisando se a sequência de "tokens" faz sentido para a sintaxe especificada
 pela gramática. Estas ferramentas são essenciais para a formalização da
 descrição de uma linguagem de programação e intrínsecas ao funcionamento
@@ -39,7 +39,7 @@ feito utilizando um autômato gerado pelo analisador léxico. Nota-se, por
 exemplo, que o programa reconhecerá diversos "tokens" diferentes como sendo
 constantes decimais ou hexadecimais, mas para uma palavra reservada, a função
 correspondente será sempre executada.
-    
+
         0[xX]{H}+{IS}?      { count(); return(CONSTANT); }
         0{D}+{IS}?          { count(); return(CONSTANT); }
 
@@ -65,6 +65,6 @@ variações do que pode ser expressado, através de uma gramática.
         	| FOR '(' expr ';' expr ';' expr ')' statement
         	;
 
-Ex.: em 'iteration_statement', observa-se que é possível abrigar diversas 
-expressões booleanas dentro de uma simples operação FOR, enquanto 
-existe apenas uma possibilidade para a operação WHILE. 
+Ex.: em 'iteration_statement', observa-se que é possível abrigar diversas
+expressões booleanas dentro de uma simples operação FOR, enquanto
+existe apenas uma possibilidade para a operação WHILE.

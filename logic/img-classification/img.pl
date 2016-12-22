@@ -32,7 +32,7 @@ matrix([[4,0,0,0,0,0,0,0,0,0],
 
 % ARRAY TO LIST OF COORDINATES
 % -------------------------
-% Example: 
+% Example:
 %    ?- coord([[50, 10, 30], [10, 20, 40]], C).
 %    C = [(0,0,50),(0,1,10),(0,2,30),(1,0,10),(1,1,20),(1,2,40)].
 
@@ -72,7 +72,7 @@ coord(Mat, Coord) :-
 
 % LIST OF COORDINATES TO ARRAY
 % -------------------------
-% Example: 
+% Example:
 %    ?- coord2matrix([(0,0,50),(0,1,10),(0,2,30),(1,0,10),(1,1,20),(1,2,40)], M).
 %    M = [[50, 10, 30], [10, 20, 40]].
 
@@ -126,7 +126,7 @@ width(S, W) :-
 
 value([(X,Y,V)|_], (X,Y,V)).
 value([_|St], (X,Y,Z)) :-
-    value(St, (X,Y,Z)).  
+    value(St, (X,Y,Z)).
 
 maximum(S, M) :-  %maximum for list of coordinates
     findall( V, value(S,(_,_,V)), Lv ),
@@ -173,7 +173,7 @@ getPixel([(A,B,V)|_], (X,Y,V)) :-
 getPixel([_|St], (X,Y,Z)) :-
     getPixel(St, (X,Y,Z)).
 
-putPixel(_, [], []) :- 
+putPixel(_, [], []) :-
     !.
 putPixel((A,B,V), [(A,B,_)|T1], [(A,B,V)|T2]) :-
     putPixel((A,B,V), T1, T2),
@@ -223,7 +223,7 @@ n4(S, (X,Y,V), N) :-
 % WRITE PGM
 % -------------------------
 % Write a PGM (text mode by line) image file format
-% Example: 
+% Example:
 %    ?- readPGM('ufsc.pgm', M), writePGM('ufsc_out.pgm', M).
 
 writePGM(FileName, I) :-
@@ -276,7 +276,7 @@ maximum_matrix(M, Maximum) :-
 
 % READ PGM
 % -------------------------
-% Example: 
+% Example:
 %    ?- readPGM('ufsc.pgm', M), writePGM('ufsc_out.pgm', M).
 
 readPGM(FileName, I) :-
@@ -333,10 +333,10 @@ replace(Find, Replace), [C] -->
         replace(Find, Replace).
 
 substitute(Find, Replace, Request, Result):-
-        phrase(replace(Find, Replace), Request, Result).    
+        phrase(replace(Find, Replace), Request, Result).
 
-remove([],_,[]) :- !. 
-remove([X|T],X,L1) :- !, remove(T,X,L1).         
+remove([],_,[]) :- !.
+remove([X|T],X,L1) :- !, remove(T,X,L1).
 remove([H|T],X,[H|L1]) :- remove(T,X,L1).
 
 lines([])           --> call(eos), !.

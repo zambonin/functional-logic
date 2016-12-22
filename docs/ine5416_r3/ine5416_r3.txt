@@ -4,13 +4,13 @@ Relatório 3 - Estrutura das linguagens
 
 * weather.py
 
-Este programa foi criado utilizando uma abordagem mais procedimental. Existem 
+Este programa foi criado utilizando uma abordagem mais procedimental. Existem
 diversas aberturas para utilização de funções, sejam estas aninhadas ou não, mas
-optou-se por uma versão mais simples e legível, que mostra claramente o seu 
-objetivo: um jeito rápido e simples para descobrir a temperatura atual, dada a 
-sua localização arbitrária (a partir de códigos ICAO[1]). O código-fonte 
-apresenta estruturas como expressões regulares e formatação de strings, além de 
-comunicação com a internet, de modo a simplificar o desenvolvimento e também o 
+optou-se por uma versão mais simples e legível, que mostra claramente o seu
+objetivo: um jeito rápido e simples para descobrir a temperatura atual, dada a
+sua localização arbitrária (a partir de códigos ICAO[1]). O código-fonte
+apresenta estruturas como expressões regulares e formatação de strings, além de
+comunicação com a internet, de modo a simplificar o desenvolvimento e também o
 resultado final, mostrado ao usuário desta maneira:
 
         [23:35] zambonin@Galileo ~ $ python weather.py SBFL
@@ -20,8 +20,8 @@ resultado final, mostrado ao usuário desta maneira:
 
 De modo contrário ao código anterior, a ideia deste programa é utilizar o máximo
 possível de abordagens funcionais, como list comprehensions[2] ("emprestados" de
-Haskell, são uma forma de retonar uma lista em apenas uma linha, dada certa 
-condição), e suas próprias funções nativas, além de explicitamente dividir o 
+Haskell, são uma forma de retonar uma lista em apenas uma linha, dada certa
+condição), e suas próprias funções nativas, além de explicitamente dividir o
 programa em funções. A estratégia geral não difere muito -- procurar informações
 necessárias no código-fonte de uma página na internet e separar os dados
 corretamente, novamente com expressões regulares e \textit{slices} em listas.
