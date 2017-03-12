@@ -54,7 +54,7 @@ como ele deveria fazê-lo.
     matemáticas, ou seja, o resultado de uma função depende apenas de seus
     argumentos. Pode ser inferido que é difícil trabalhar com dados voláteis
     neste paradigma. Exemplos de linguagens: Erlang, Haskell, e dialetos de
-    Lisp como Common Lips e Clojure.
+    Lisp como Common Lisp e Clojure.
 
     * Programação lógica baseia-se, como o nome diz, em lógica
     formal. Um programa escrito com este paradigma geralmente é um conjunto
