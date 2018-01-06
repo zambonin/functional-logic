@@ -1,0 +1,3 @@
+[submodule "docs/sftex"]
+	path = docs/sftex
+	url = git@github.com:zambonin/sftex.git

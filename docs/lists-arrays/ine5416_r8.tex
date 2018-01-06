@@ -1,0 +1,67 @@
+\documentclass{../sftex/sftex}
+
+\title{Listas e \emph{Arrays}}
+\author{Gustavo Zambonin}
+\email{gustavo.zambonin@grad.ufsc.br}
+\src{https://github.com/zambonin/ufsc-ine5416}
+\uniclass{Paradigmas de Programação}
+\classcode{UFSC-INE5416}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Nota}: o código-fonte em C foi compilado com
+\verb!gcc -lm ine5416_r8.c!. Note que a compilação com \verb!g++! falhará
+por conta de um recurso chamado \emph{variable-length array}. Uma referência
+sobre isto pode ser encontrada \href{http://stackoverflow.com/a/25552114}{aqui}.
+
+\subsubsection*{Parte 1}
+\begin{itemize}
+    \item A declaração de \emph{arrays} em C pode ser feita de algumas
+    maneiras, utilizando a notação de colchetes (\verb!int numeros[]!, com
+    número de elementos desejado opcional dentro dos colchetes), ou ponteiros
+    (\verb!int *numeros!). Estruturas multidimensionais podem ser criadas
+    aumentando o número de colchetes ou de ponteiros (uma matriz pode ser
+    declarada como \verb!int matriz[][]! ou \verb!int **matriz!). Por conta
+    da tipagem da linguagem, não existem \emph{arrays} que abrigam objetos
+    de tipo diferente. A inicialização destas variáveis pode ser realizada
+    com alocação dinâmica de memória (\verb!malloc! e \verb!calloc!) ou
+    através de notação de chaves englobando elementos. Não existem definições
+    de listas em C, comparado a outras linguagens, além de estruturas de dados
+    como listas ligadas ou circulares.
+
+    \item Por outro lado, a declaração de listas em Python é mais dinâmica.
+    Por exemplo: \verb!lista = []! atribuirá uma lista vazia à variável
+    correspondente, e também é possível popular a lista com elementos dentro
+    dos colchetes; \verb![i for i in range(10)]! gerará uma lista onde
+    $0 \leq i \leq 9$ (este método chama-se \emph{list comprehension},
+    baseado originalmente na funcionalidade de Haskell). Um \emph{array}
+    funciona de modo levemente diferente, pois esta estrutura é homogênea
+    e \href{https://docs.python.org/2/library/array.html}{limitada} quanto ao
+    tipo dos objetos que armazena.
+
+    \item \emph{Arrays} como argumentos de funções têm diferenças apenas
+    na notação, em C. O compilador sempre entenderá o argumento como um
+    ponteiro, ou seja, o valor do endereço do primeiro elemento do
+    \emph{array} na memória. Assim como Python, os objetos originais serão
+    modificados se passados para uma função. Para prevenir este comportamento,
+    cópias em memória deverão ser realizadas.
+\end{itemize}
+
+\subsubsection*{Parte 2}
+\begin{itemize}
+    \item \verb!ine5416_r8.c! \\
+    Algumas estratégias foram utilizadas para facilitar a produção do código,
+    como a definição de uma pequena função para retornar o tamanho de um
+    \emph{array}, e o uso de \emph{VLAs} onde possível, evitando criação
+    de \emph{arrays} dinamicamente.
+
+    \item \verb!ine5416_r8.py! \\
+    A complexidade de espaço destas funções mostra-se claramente maior do que
+    em C, porém isso se paga na facilidade de manipulação dos dados. Funções
+    básicas da linguagem ajudam a simplificar os métodos. Também não é
+    necessário se preocupar com alocação dinâmica de memória.
+\end{itemize}
+
+\end{document}
