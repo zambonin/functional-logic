@@ -10,7 +10,7 @@ Valid tracking codes are thirteen characters long with some details [1].
 """
 
 from pprint import pprint
-from re import findall, search, sub
+from re import findall, sub, DOTALL
 from sys import argv
 
 try:
@@ -27,12 +27,10 @@ def fetch_source(tracking_code):
 
 def parse_info(tracking_code):
     """Transforms the raw page source so it is human-readable."""
-    content = findall(r'<td.+?</td>', fetch_source(tracking_code))
-    info = [sub(r'<[^>]*>', '', line) for line in content]
-    ind = [info.index(line) for line in info if search(r'(\d+/\d+/\d+)', line)]
-
-    return [info[ind[i]:ind[i + 1]] for i in range(len(ind) - 1)][::-1] \
-            or "Invalid tracking number."
+    content = findall(r'<td(?: v|>).+?</td>', fetch_source(tracking_code),
+                      DOTALL)
+    return [sub(r'(<[^>]*>)|\s+', ' ', line).strip() for line in content] \
+           or "Invalid tracking number."
 
 
 if __name__ == '__main__':
