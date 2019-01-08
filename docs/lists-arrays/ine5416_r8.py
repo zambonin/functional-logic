@@ -1,11 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+# pylint: disable=C0103,C0111
 
+from __future__ import division
 
 # Part 1
 
+
 def vectorNorm(vector):
-    return sum([i**2 for i in vector])**(1 / 2)
+    return sum([i ** 2 for i in vector]) ** (1 / 2)
 
 
 def scalarVectorMult(vector, scalar):
@@ -27,9 +30,11 @@ def dotProduct(v1, v2):
 def crossProductR3(v1, v2):
     if len(v1) != 3 or len(v2) != 3:
         return []
-    return [(v1[1] * v2[2]) - (v2[1] * v1[2]),
-            (v2[0] * v1[2]) - (v1[0] * v2[2]),
-            (v1[0] * v2[1]) - (v2[0] * v1[1])]
+    return [
+        (v1[1] * v2[2]) - (v2[1] * v1[2]),
+        (v2[0] * v1[2]) - (v1[0] * v2[2]),
+        (v1[0] * v2[1]) - (v2[0] * v1[1]),
+    ]
 
 
 def angleBetweenVectors(v1, v2):
@@ -37,6 +42,7 @@ def angleBetweenVectors(v1, v2):
 
 
 # Part 2
+
 
 def transposeMatrix(matrix):
     return [list(x) for x in zip(*matrix)]
@@ -61,11 +67,15 @@ def detSarrus(m):
     if len(m) != 3 or len(m[0]) != 3:
         return 0
 
-    posPart = m[0][0] * m[1][1] * m[2][2] + \
-        m[0][1] * m[1][2] * m[0][2] + \
-        m[0][2] * m[1][0] * m[2][1]
-    negPart = m[0][2] * m[1][1] * m[2][0] + \
-        m[0][0] * m[1][0] * m[2][1] + \
-        m[0][1] * m[1][0] * m[2][2]
+    posPart = (
+        m[0][0] * m[1][1] * m[2][2]
+        + m[0][1] * m[1][2] * m[0][2]
+        + m[0][2] * m[1][0] * m[2][1]
+    )
+    negPart = (
+        m[0][2] * m[1][1] * m[2][0]
+        + m[0][0] * m[1][0] * m[2][1]
+        + m[0][1] * m[1][0] * m[2][2]
+    )
 
-    return (posPart - negPart)
+    return posPart - negPart
